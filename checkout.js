@@ -87,6 +87,13 @@
     e.target.value = v.replace(/(.{4})/g, "$1 ").trim();
   });
 
+  /* This formats the expiry date as MM/YY while the user is typing  */
+  get("card-expiry").addEventListener("input", function (e){
+    let v = e.target.value.replace(/\D/g, "").slice(0,4);
+    if(v.length > 2) v = v.slice(0,2) + "/" + v.slice(2);
+    e.target.value = v;
+  });
+
   get("payment-form").addEventListener("submit", function (e) {
     e.preventDefault();
     if (state.processing) return;
